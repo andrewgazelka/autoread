@@ -8,6 +8,10 @@
 
 Claude Code plugin that auto-injects `AGENTS.md` into context. Bridges the gap until Anthropic adds native support.
 
+<p align="center">
+<img width="570" height="416" alt="image" src="https://github.com/user-attachments/assets/da15b637-b849-4a67-ac09-772dc45b3d65" />
+</p>
+
 > [!NOTE]
 > **Dear Anthropic:** Please add native `AGENTS.md` support so I can archive this before Christmas!
 >
