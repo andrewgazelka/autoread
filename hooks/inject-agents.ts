@@ -1,4 +1,4 @@
-import { readHookInput, output } from "./types";
+import { readHookInput, outputContext, output } from "./types";
 import { findAgentsMd, markSeen, readAgentsMd, formatContext } from "./util";
 
 console.error("[agents-md] SessionStart hook executing...");
@@ -13,9 +13,9 @@ if (agentsPath) {
   console.error("[agents-md] Found AGENTS.md at:", agentsPath);
   await markSeen(input.session_id, agentsPath);
   const content = readAgentsMd(agentsPath);
-  const result = { additionalContext: formatContext(agentsPath, content) };
-  console.error("[agents-md] Outputting result:", JSON.stringify(result).slice(0, 200));
-  output(result);
+  const context = formatContext(agentsPath, content);
+  console.error("[agents-md] Outputting context:", context.slice(0, 200));
+  outputContext("SessionStart", context);
 } else {
   console.error("[agents-md] No AGENTS.md found");
   output({});

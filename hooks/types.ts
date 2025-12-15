@@ -13,11 +13,18 @@ export interface HookInput {
   tool_response?: unknown;
 }
 
-export interface HookOutput {
-  decision?: "approve" | "block" | "deny";
-  reason?: string;
+export interface HookSpecificOutput {
+  hookEventName: string;
   additionalContext?: string;
+  permissionDecision?: "allow" | "deny" | "ask";
   updatedInput?: Record<string, unknown>;
+}
+
+export interface HookOutput {
+  hookSpecificOutput?: HookSpecificOutput;
+  systemMessage?: string;
+  continue?: boolean;
+  suppressOutput?: boolean;
 }
 
 export async function readHookInput(): Promise<HookInput> {
@@ -28,10 +35,31 @@ export function output(result: HookOutput): void {
   console.log(JSON.stringify(result));
 }
 
-export function approve(additionalContext?: string): void {
-  output(additionalContext ? { decision: "approve", additionalContext } : { decision: "approve" });
+export function outputContext(hookEventName: string, additionalContext: string): void {
+  output({
+    hookSpecificOutput: {
+      hookEventName,
+      additionalContext,
+    },
+  });
 }
 
-export function block(reason: string): void {
-  output({ decision: "block", reason });
+export function approve(hookEventName: string, additionalContext?: string): void {
+  output({
+    hookSpecificOutput: {
+      hookEventName,
+      permissionDecision: "allow",
+      ...(additionalContext && { additionalContext }),
+    },
+  });
+}
+
+export function block(hookEventName: string, reason: string): void {
+  output({
+    hookSpecificOutput: {
+      hookEventName,
+      permissionDecision: "deny",
+    },
+    systemMessage: reason,
+  });
 }
