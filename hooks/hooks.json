@@ -1,11 +1,24 @@
 {
   "hooks": {
-    "UserPromptSubmit": [
+    "SessionStart": [
       {
+        "matcher": "*",
         "hooks": [
           {
             "type": "command",
             "command": "bun run $CLAUDE_PLUGIN_DIR/hooks/inject-agents.ts",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun run $CLAUDE_PLUGIN_DIR/hooks/on-read.ts",
             "timeout": 5
           }
         ]
