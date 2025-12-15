@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 160">
+  <style>
+    .title { fill: #1f2328; }
+    .subtitle { fill: #656d76; }
+    .icon-text { fill: #656d76; font-size: 11px; }
+    .connector { stroke: #656d76; stroke-width: 2; stroke-dasharray: 4 4; }
+    .dot { fill: #656d76; }
+
+    @media (prefers-color-scheme: dark) {
+      .title { fill: #ffffff; }
+      .subtitle { fill: #8b949e; }
+      .icon-text { fill: #8b949e; }
+      .connector { stroke: #8b949e; }
+      .dot { fill: #8b949e; }
+    }
+  </style>
+
+  <!-- Claude icon (stylized C) -->
+  <g transform="translate(60, 40)">
+    <circle cx="30" cy="30" r="28" fill="#D97757" />
+    <text x="30" y="42" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="600" fill="white">C</text>
+  </g>
+  <text class="icon-text" x="90" y="105" text-anchor="middle" font-family="system-ui">Claude</text>
+
+  <!-- Connector dots -->
+  <line class="connector" x1="130" y1="70" x2="180" y2="70" />
+
+  <!-- AGENTS.md document icon -->
+  <g transform="translate(190, 35)">
+    <rect x="0" y="0" width="50" height="60" rx="4" fill="#3B82F6" />
+    <rect x="8" y="10" width="34" height="3" rx="1" fill="white" opacity="0.9"/>
+    <rect x="8" y="18" width="28" height="3" rx="1" fill="white" opacity="0.7"/>
+    <rect x="8" y="26" width="32" height="3" rx="1" fill="white" opacity="0.7"/>
+    <rect x="8" y="34" width="24" height="3" rx="1" fill="white" opacity="0.7"/>
+    <rect x="8" y="42" width="30" height="3" rx="1" fill="white" opacity="0.7"/>
+  </g>
+  <text class="icon-text" x="215" y="115" text-anchor="middle" font-family="system-ui">.md</text>
+
+  <!-- Connector to other agents -->
+  <line class="connector" x1="250" y1="70" x2="300" y2="70" />
+
+  <!-- Multiple agent icons (representing OpenAI, Cursor, etc) -->
+  <g transform="translate(310, 45)">
+    <circle cx="15" cy="15" r="14" fill="#10A37F" opacity="0.9"/>
+    <circle cx="40" cy="15" r="14" fill="#7C3AED" opacity="0.9"/>
+    <circle cx="27" cy="38" r="14" fill="#F59E0B" opacity="0.9"/>
+  </g>
+  <text class="icon-text" x="337" y="105" text-anchor="middle" font-family="system-ui">Others</text>
+
+  <!-- Title -->
+  <text class="title" x="410" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="48" font-weight="700">agents-md</text>
+
+  <!-- Subtitle -->
+  <text class="subtitle" x="410" y="90" font-family="system-ui, -apple-system, sans-serif" font-size="16">AGENTS.md support for Claude Code</text>
+
+  <!-- Small plea text -->
+  <text class="subtitle" x="410" y="115" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-style="italic">until Anthropic adds native support</text>
+</svg>

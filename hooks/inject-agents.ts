@@ -7,7 +7,7 @@ const cwd = input.cwd || process.cwd();
 const agentsPath = findAgentsMd(cwd);
 
 if (agentsPath) {
-  markSeen(input.session_id, agentsPath);
+  await markSeen(input.session_id, agentsPath);
   const content = readAgentsMd(agentsPath);
   output({ additionalContext: formatContext(agentsPath, content) });
 } else {

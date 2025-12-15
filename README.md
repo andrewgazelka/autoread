@@ -1,28 +1,40 @@
-# agents-md
+<p align="center">
+  <img src=".github/assets/header.svg" alt="agents-md" width="100%"/>
+</p>
 
-Claude Code plugin that auto-injects `AGENTS.md` into context.
+<p align="center">
+  <code>claude plugin marketplace add andrewgazelka/agents-md && claude plugin install agents-md</code>
+</p>
 
-## Why?
+Claude Code plugin that auto-injects `AGENTS.md` into context. Bridges the gap until Anthropic adds native support.
 
-Claude Code uses `CLAUDE.md` for project instructions, but [AGENTS.md](https://github.com/lf-agents/AGENTS.md) is becoming the open standard supported by OpenAI, Cursor, Zed, GitHub Copilot, and others.
+> [!NOTE]
+> **Dear Anthropic:** Please add native `AGENTS.md` support so I can archive this before Christmas!
+>
+> The [Linux Foundation](https://www.linuxfoundation.org/press/linux-foundation-launches-agentic-ai-initiative-to-accelerate-open-and-interoperable-ai-agent-ecosystem) just launched AGENTS.md as a founding project alongside MCP. OpenAI, Cursor, Zed, GitHub Copilot all support it.
 
-This plugin automatically injects your `AGENTS.md` into Claude's context on every prompt.
+## Features
 
-## Installation
+- **SessionStart**: Injects `AGENTS.md` from cwd when session begins
+- **Read hook**: Discovers new `AGENTS.md` files as Claude reads files in different directories
+- **Per-session state**: Same file won't be injected twice
 
-```bash
-claude plugin marketplace add andrewgazelka/agents-md-mcp
-claude plugin install agents-md
-```
+## How It Works
 
-## How it works
-
-A `UserPromptSubmit` hook walks up from the current directory looking for `AGENTS.md` and injects its contents into Claude's context automatically.
+Hooks walk up the directory tree looking for `AGENTS.md` and inject contents as `additionalContext`. State tracked via lockfile-protected JSON in tmpdir.
 
 ## Requirements
 
-- [Bun](https://bun.sh) must be installed (the hook script uses Bun)
+[Bun](https://bun.sh) must be installed.
 
-## License
+---
 
-MIT
+<details>
+<summary>Why not just symlink?</summary>
+
+You can `ln -s AGENTS.md CLAUDE.md`, but:
+- Pollutes repos with Claude-specific files
+- Doesn't auto-discover AGENTS.md in subdirectories
+- This plugin works transparently
+
+</details>

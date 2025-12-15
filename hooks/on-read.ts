@@ -25,6 +25,6 @@ if (seen.has(agentsPath)) {
 }
 
 // New AGENTS.md found - inject it
-markSeen(input.session_id, agentsPath);
+await markSeen(input.session_id, agentsPath);
 const content = readAgentsMd(agentsPath);
 approve(formatContext(agentsPath, content));
